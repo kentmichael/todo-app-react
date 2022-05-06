@@ -1,6 +1,6 @@
 {
   "name": "todo-app-react",
-  "homepage": "https://github.com/kentmichael/todo-app-react",
+  "homepage": "https://kentmichael.github.io/todo-app-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
