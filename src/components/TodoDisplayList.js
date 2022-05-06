@@ -1,14 +1,32 @@
 import React from "react"
 
-const TodoDisplayList = ({ list, toggleItemStatus }) => {
+const itemCompleted = {
+  textDecoration: "line-through",
+  color: "gray",
+}
+
+const filterList = (list, filter) => {
+  switch (filter) {
+    case "active":
+      return list.filter((item) => !item.isCompleted)
+    case "completed":
+      return list.filter((item) => item.isCompleted)
+    default:
+      return list
+  }
+}
+
+const TodoDisplayList = ({ list, toggleItemStatus, filter }) => {
+  const filteredList = filterList(list, filter)
+
   return (
     <ul>
-      {list.length === 0 ? (
+      {filteredList.length === 0 ? (
         <li>Empty list</li>
       ) : (
-        list.map((item) => (
-          <li key={item.id}>
-            {JSON.stringify({ item })}
+        filteredList.map((item) => (
+          <li key={item.id} style={item.isCompleted ? itemCompleted : null}>
+            {item.item}
             <button onClick={() => toggleItemStatus(item.id)}>X</button>
           </li>
         ))
